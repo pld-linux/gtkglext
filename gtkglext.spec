@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	b8743a53a4062f3bf03062bafa25e924
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
