@@ -6,6 +6,8 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://gtkglext.sourceforge.net/
+Patch0:		%{name}-drawpixbuf.patch
+Patch1:		%{name}-visual.patch
 Requires:	OpenGL
 BuildRequires:	OpenGL-devel
 BuildRequires:	gtk+2-devel => 2.1.2
@@ -50,8 +52,15 @@ Statyczne biblioteki GtkGLExt.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
+rm -f missing
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure
 %{__make}
 
@@ -59,7 +68,8 @@ Statyczne biblioteki GtkGLExt.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	pkgconfigdir=%{_pkgconfigdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -73,11 +83,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *gz docs/*.gz
-%{_includedir}/gtkgl
+%doc docs/reference/gtkglext/html/*.html
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%{_aclocaldir}/*
+%{_includedir}/%{name}*
+%{_pkgconfigdir}/*
 
 %files static
 %defattr(644,root,root,755)
