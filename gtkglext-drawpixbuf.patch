@@ -1,0 +1,42 @@
+diff -Nur gtkglext-0.5.1.orig/gdk/gdkglpixmap.c gtkglext-0.5.1/gdk/gdkglpixmap.c
+--- gtkglext-0.5.1.orig/gdk/gdkglpixmap.c	Fri Aug 30 21:14:14 2002
++++ gtkglext-0.5.1/gdk/gdkglpixmap.c	Fri Nov 15 11:05:35 2002
+@@ -218,7 +218,7 @@
+   drawable_class->get_clip_region        = gdk_gl_pixmap_get_clip_region;
+   drawable_class->get_visible_region     = gdk_gl_pixmap_get_visible_region;
+   drawable_class->get_composite_drawable = gdk_gl_pixmap_get_composite_drawable;
+-  drawable_class->_draw_pixbuf           = gdk_gl_pixmap_draw_pixbuf;
++  drawable_class->draw_pixbuf            = gdk_gl_pixmap_draw_pixbuf;
+   drawable_class->_copy_to_image         = gdk_gl_pixmap_copy_to_image;
+ 
+   g_object_class_install_property (object_class,
+@@ -637,7 +637,7 @@
+ {
+   GdkDrawable *real_drawable = ((GdkGLPixmap *) drawable)->drawable;
+ 
+-  GDK_DRAWABLE_GET_CLASS (real_drawable)->_draw_pixbuf (real_drawable,
++  GDK_DRAWABLE_GET_CLASS (real_drawable)->draw_pixbuf  (real_drawable,
+                                                         gc,
+                                                         pixbuf,
+                                                         src_x,
+diff -Nur gtkglext-0.5.1.orig/gdk/gdkglwindow.c gtkglext-0.5.1/gdk/gdkglwindow.c
+--- gtkglext-0.5.1.orig/gdk/gdkglwindow.c	Fri Aug 30 21:14:14 2002
++++ gtkglext-0.5.1/gdk/gdkglwindow.c	Fri Nov 15 11:05:56 2002
+@@ -218,7 +218,7 @@
+   drawable_class->get_clip_region        = gdk_gl_window_get_clip_region;
+   drawable_class->get_visible_region     = gdk_gl_window_get_visible_region;
+   drawable_class->get_composite_drawable = gdk_gl_window_get_composite_drawable;
+-  drawable_class->_draw_pixbuf           = gdk_gl_window_draw_pixbuf;
++  drawable_class->draw_pixbuf            = gdk_gl_window_draw_pixbuf;
+   drawable_class->_copy_to_image         = gdk_gl_window_copy_to_image;
+ 
+   g_object_class_install_property (object_class,
+@@ -638,7 +638,7 @@
+ {
+   GdkDrawable *real_drawable = ((GdkGLWindow *) drawable)->drawable;
+ 
+-  GDK_DRAWABLE_GET_CLASS (real_drawable)->_draw_pixbuf (real_drawable,
++  GDK_DRAWABLE_GET_CLASS (real_drawable)->draw_pixbuf  (real_drawable,
+                                                         gc,
+                                                         pixbuf,
+                                                         src_x,

@@ -1,0 +1,12 @@
+diff -Nur gtkglext-0.5.1.orig/gdk/x11/gdkglconfig-x11.c gtkglext-0.5.1/gdk/x11/gdkglconfig-x11.c
+--- gtkglext-0.5.1.orig/gdk/x11/gdkglconfig-x11.c	Wed Aug 28 22:06:30 2002
++++ gtkglext-0.5.1/gdk/x11/gdkglconfig-x11.c	Fri Nov 15 11:44:03 2002
+@@ -231,7 +231,7 @@
+    */
+ 
+ #ifdef GDK_MULTIHEAD_SAFE
+-  visual = gdkx_visual_get_for_screen (glconfig->screen, impl->xvinfo->visualid);
++  visual = gdk_x11_screen_lookup_visual (glconfig->screen, impl->xvinfo->visualid);
+ #else  /* GDK_MULTIHEAD_SAFE */
+   visual = gdkx_visual_get (impl->xvinfo->visualid);
+ #endif /* GDK_MULTIHEAD_SAFE */
