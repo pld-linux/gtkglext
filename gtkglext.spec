@@ -14,6 +14,7 @@ BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 1:2.1.2
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	pkgconfig
 Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
