@@ -24,7 +24,7 @@ GtkGLExt provides the GDK objects to support OpenGL rendering in GTK,
 and GtkWidget API add-ons to make GTK+ widgets OpenGL-capable.
 
 As opposed to Janne Loff's GtkGLArea, it does not provide any OpenGL
-widget, but an interface to use OpenGL on *ANY* GTK+ widget. 
+widget, but an interface to use OpenGL on *ANY* GTK+ widget.
 
 %description -l pl
 GtkGLExt udostêpnia obiekty GDK obs³uguj±ce rysowanie OpenGL w GTK
