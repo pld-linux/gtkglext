@@ -8,12 +8,14 @@ Group:		X11/Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-devel
-BuildRequires:	gtk+2-devel => 2.1.2
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gtk+2-devel >= 2.1.2
+BuildRequires:	libtool >= 1:1.4.2-9
 Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1
-%define		_datadir	/usr/share
 
 %description
 GtkGLExt provides the GDK objects to support OpenGL rendering in GTK,
@@ -60,6 +62,12 @@ Statyczne biblioteki GtkGLExt.
 %setup -q
 
 %build
+# supplied libtool is broken (relink)
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--enable-static \
 	--with-html-path=%{_gtkdocdir}
@@ -90,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}*
 %{_includedir}/%{name}*
 %{_pkgconfigdir}/*
+%{_aclocaldir}/*.m4
 %{_gtkdocdir}/*
 
 %files static
