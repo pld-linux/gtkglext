@@ -1,18 +1,18 @@
 Summary:	OpenGL extension to GTK
 Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
-Version:	1.0.5
-Release:	2
+Version:	1.0.6
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	0f860f0d0f2873bd625b902e01fee756
-Patch0:		%{name}-am18.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/1.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	e347e028dfe98d69c5995f547108db77
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2.1.2
+BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
 Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -38,7 +38,7 @@ OpenGL, ale interfejs do u¿ywania OpenGL w *KA¯DYM* widgecie GTK+.
 Summary:	Development files for GtkGLExt
 Summary(pl):	Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-devel
 Requires:	gtk+2-devel >= 2.1.2
 
@@ -52,7 +52,7 @@ Pliki programistyczne GtkGLExt.
 Summary:	GtkGLExt static libraries
 Summary(pl):	Statyczne biblioteki GtkGLExt
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 GtkGLExt static libraries.
@@ -62,7 +62,6 @@ Statyczne biblioteki GtkGLExt.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 # supplied libtool is broken (relink)
@@ -73,7 +72,9 @@ Statyczne biblioteki GtkGLExt.
 %{__automake}
 %configure \
 	--enable-static \
-	--with-html-dir=%{_gtkdocdir}
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir} \
+	--with-gdktarget=x11
 
 %{__make}
 
