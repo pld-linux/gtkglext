@@ -1,7 +1,7 @@
 Summary:	OpenGL extension to GTK
 Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
-Version:	0.6.0
+Version:	0.7.1
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
