@@ -1,4 +1,5 @@
 Summary:	OpenGL extension to GTK
+Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	0.5.1
 Release:	1
@@ -8,9 +9,9 @@ Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.
 URL:		http://gtkglext.sourceforge.net/
 Patch0:		%{name}-drawpixbuf.patch
 Patch1:		%{name}-visual.patch
-Requires:	OpenGL
 BuildRequires:	OpenGL-devel
 BuildRequires:	gtk+2-devel => 2.1.2
+Requires:	OpenGL
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -18,11 +19,19 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_datadir	/usr/share
 
 %description
-GtkGLExt provides the GDK objects to support OpenGL rendering in GTK, and
-GtkWidget API add-ons to make GTK+ widgets OpenGL-capable.
+GtkGLExt provides the GDK objects to support OpenGL rendering in GTK,
+and GtkWidget API add-ons to make GTK+ widgets OpenGL-capable.
 
-As opposed to Jane Loff's GtkGLArea , it does not provide any OpenGL
+As opposed to Janne Loff's GtkGLArea, it does not provide any OpenGL
 widget, but an interface to use OpenGL on *ANY* GTK+ widget. 
+
+%description -l pl
+GtkGLExt udostêpnia obiekty GDK obs³uguj±ce rysowanie OpenGL w GTK
+oraz dodatki do API GtkWidget dodaj±ce obs³ugê OpenGL do widgetów
+GTK+.
+
+W przeciwieñstwie do GtkGLArea Janne Loffa, nie udostêpnia widgetu
+OpenGL, ale interfejs do u¿ywania OpenGL w *KA¯DYM* widgecie GTK+.
 
 %package devel
 Summary:	Development files for GtkGLExt
