@@ -1,14 +1,12 @@
 Summary:	OpenGL extension to GTK
 Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
-Version:	0.5.1
+Version:	0.6.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://telia.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://gtkglext.sourceforge.net/
-Patch0:		%{name}-drawpixbuf.patch
-Patch1:		%{name}-visual.patch
 BuildRequires:	OpenGL-devel
 BuildRequires:	gtk+2-devel => 2.1.2
 Requires:	OpenGL
@@ -61,16 +59,11 @@ Statyczne biblioteki GtkGLExt.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
-rm -f missing
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
-%configure
+%configure \
+	--enable-static \
+	--with-html-path=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -78,7 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	HTML_DIR=%{_gtkdocdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,11 +86,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/reference/gtkglext/html/*.html
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
+%{_libdir}/%{name}*
 %{_includedir}/%{name}*
 %{_pkgconfigdir}/*
+%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
