@@ -7,7 +7,7 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	febd508e3620e30090062824bb5b95f3
-Patch0:		http://dl.sourceforge.net/%{name}/%{name}-private-header.patch.gz
+Patch0:		http://dl.sourceforge.net/%{name}/%{name}-%{version}-private-header.patch.gz
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
