@@ -1,13 +1,12 @@
 Summary:	OpenGL extension to GTK
 Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
-Version:	1.0.2
-Release:	2
+Version:	1.0.3
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	febd508e3620e30090062824bb5b95f3
-Patch0:		http://dl.sourceforge.net/%{name}/%{name}-%{version}-private-header.patch.gz
+# Source0-md5:	73f73fc4b65d8692e2472aa6a4d6a43b
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-devel
 BuildRequires:	autoconf
@@ -40,7 +39,7 @@ Summary(pl):	Pliki programistyczne GtkGLExt
 Group:		X11/Libraries
 Requires:	%{name} = %{version}
 Requires:	OpenGL-devel
-Requires:	gtk+2-devel => 2.1.2
+Requires:	gtk+2-devel >= 2.1.2
 
 %description devel
 Development files for GtkGLExt.
@@ -62,7 +61,6 @@ Statyczne biblioteki GtkGLExt.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 # supplied libtool is broken (relink)
