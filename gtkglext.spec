@@ -2,13 +2,13 @@ Summary:	OpenGL extension to GTK
 Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.0.6
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/1.0/%{name}-%{version}.tar.bz2
 # Source0-md5:	e347e028dfe98d69c5995f547108db77
 URL:		http://gtkglext.sourceforge.net/
-BuildRequires:	OpenGL-devel
+BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 1:2.1.2
@@ -40,7 +40,7 @@ Summary:	Development files for GtkGLExt
 Summary(pl):	Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	OpenGL-devel
+Requires:	OpenGL-GLU-devel
 Requires:	gtk+2-devel >= 2.1.2
 
 %description devel
