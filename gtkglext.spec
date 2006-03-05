@@ -1,21 +1,21 @@
 Summary:	OpenGL extension to GTK
 Summary(pl):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
-Version:	1.0.6
-Release:	3
+Version:	1.2.0
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtkglext/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	e347e028dfe98d69c5995f547108db77
-Patch0:		%{name}-pangox.patch
+Source0:	http://dl.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
+# Source0-md5:	ed7ba24ce06a8630c07f2d0ee5f04ab4
 URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	gtk+2-devel >= 1:2.1.2
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig
+BuildRequires:	xorg-lib-libXmu-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -41,7 +41,8 @@ Summary(pl):	Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
-Requires:	gtk+2-devel >= 2.1.2
+Requires:	gtk+2-devel >= 1:2.1.2
+Requires:	xorg-lib-libXmu-devel
 
 %description devel
 Development files for GtkGLExt.
@@ -63,10 +64,8 @@ Statyczne biblioteki GtkGLExt.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-# supplied libtool is broken (relink)
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -84,8 +83,7 @@ Statyczne biblioteki GtkGLExt.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pkgconfigdir=%{_pkgconfigdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -95,19 +93,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%doc AUTHORS ChangeLog* README TODO
+%attr(755,root,root) %{_libdir}/libg[dt]kglext-x11-*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_libdir}/%{name}*
-%{_includedir}/%{name}*
-%{_pkgconfigdir}/*
-%{_aclocaldir}/*.m4
-%{_gtkdocdir}/*
+%attr(755,root,root) %{_libdir}/libg[dt]kglext-x11-*.so
+%{_libdir}/libg[dt]kglext-x11-*.la
+%{_libdir}/%{name}-*
+%{_includedir}/%{name}-*
+%{_pkgconfigdir}/g[dt]kglext-*.pc
+%{_aclocaldir}/gtkglext-*.m4
+%{_gtkdocdir}/gtkglext
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libg[dt]kglext-x11-*.a
