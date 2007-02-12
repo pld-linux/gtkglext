@@ -1,5 +1,5 @@
 Summary:	OpenGL extension to GTK
-Summary(pl):	Rozszerzenie OpenGL dla GTK
+Summary(pl.UTF-8):   Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.2.0
 Release:	1
@@ -27,17 +27,17 @@ and GtkWidget API add-ons to make GTK+ widgets OpenGL-capable.
 As opposed to Janne Loff's GtkGLArea, it does not provide any OpenGL
 widget, but an interface to use OpenGL on *ANY* GTK+ widget.
 
-%description -l pl
-GtkGLExt udostêpnia obiekty GDK obs³uguj±ce rysowanie OpenGL w GTK
-oraz dodatki do API GtkWidget dodaj±ce obs³ugê OpenGL do widgetów
+%description -l pl.UTF-8
+GtkGLExt udostÄ™pnia obiekty GDK obsÅ‚ugujÄ…ce rysowanie OpenGL w GTK
+oraz dodatki do API GtkWidget dodajÄ…ce obsÅ‚ugÄ™ OpenGL do widgetÃ³w
 GTK+.
 
-W przeciwieñstwie do GtkGLArea Janne Loffa, nie udostêpnia widgetu
-OpenGL, ale interfejs do u¿ywania OpenGL w *KA¯DYM* widgecie GTK+.
+W przeciwieÅ„stwie do GtkGLArea Janne Loffa, nie udostÄ™pnia widgetu
+OpenGL, ale interfejs do uÅ¼ywania OpenGL w *KAÅ»DYM* widgecie GTK+.
 
 %package devel
 Summary:	Development files for GtkGLExt
-Summary(pl):	Pliki programistyczne GtkGLExt
+Summary(pl.UTF-8):   Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
@@ -47,19 +47,19 @@ Requires:	xorg-lib-libXmu-devel
 %description devel
 Development files for GtkGLExt.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki programistyczne GtkGLExt.
 
 %package static
 Summary:	GtkGLExt static libraries
-Summary(pl):	Statyczne biblioteki GtkGLExt
+Summary(pl.UTF-8):   Statyczne biblioteki GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 GtkGLExt static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki GtkGLExt.
 
 %prep
