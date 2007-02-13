@@ -1,5 +1,5 @@
 Summary:	OpenGL extension to GTK
-Summary(pl.UTF-8):   Rozszerzenie OpenGL dla GTK
+Summary(pl.UTF-8):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.2.0
 Release:	1
@@ -37,7 +37,7 @@ OpenGL, ale interfejs do używania OpenGL w *KAŻDYM* widgecie GTK+.
 
 %package devel
 Summary:	Development files for GtkGLExt
-Summary(pl.UTF-8):   Pliki programistyczne GtkGLExt
+Summary(pl.UTF-8):	Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
@@ -52,7 +52,7 @@ Pliki programistyczne GtkGLExt.
 
 %package static
 Summary:	GtkGLExt static libraries
-Summary(pl.UTF-8):   Statyczne biblioteki GtkGLExt
+Summary(pl.UTF-8):	Statyczne biblioteki GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
