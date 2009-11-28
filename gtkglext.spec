@@ -11,6 +11,7 @@ URL:		http://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gtk+2-devel >= 1:2.1.2
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
