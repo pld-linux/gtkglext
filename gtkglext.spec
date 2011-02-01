@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.2.0
 Release:	5
-License:	LGPL
+License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
 # Source0-md5:	ed7ba24ce06a8630c07f2d0ee5f04ab4
@@ -13,11 +13,12 @@ BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gtk+2-devel >= 1:2.19.0
+BuildRequires:	gtk+2-devel >= 2:2.19.0
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libXmu-devel
+Requires:	gtk+2 >= 2:2.19.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -43,7 +44,7 @@ Summary(pl.UTF-8):	Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
-Requires:	gtk+2-devel >= 1:2.1.2
+Requires:	gtk+2-devel >= 2:2.19.0
 Requires:	xorg-lib-libXmu-devel
 
 %description devel
@@ -97,18 +98,27 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog* README TODO
-%attr(755,root,root) %{_libdir}/libg[dt]kglext-x11-*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libgdkglext-x11-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgdkglext-x11-1.0.so.0
+%attr(755,root,root) %{_libdir}/libgtkglext-x11-1.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgtkglext-x11-1.0.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libg[dt]kglext-x11-*.so
-%{_libdir}/libg[dt]kglext-x11-*.la
-%{_libdir}/%{name}-*
-%{_includedir}/%{name}-*
-%{_pkgconfigdir}/g[dt]kglext-*.pc
-%{_aclocaldir}/gtkglext-*.m4
+%attr(755,root,root) %{_libdir}/libgdkglext-x11-1.0.so
+%attr(755,root,root) %{_libdir}/libgtkglext-x11-1.0.so
+%{_libdir}/libgdkglext-x11-1.0.la
+%{_libdir}/libgtkglext-x11-1.0.la
+%{_libdir}/%{name}-1.0
+%{_includedir}/%{name}-1.0
+%{_pkgconfigdir}/gdkglext-1.0.pc
+%{_pkgconfigdir}/gdkglext-x11-1.0.pc
+%{_pkgconfigdir}/gtkglext-1.0.pc
+%{_pkgconfigdir}/gtkglext-x11-1.0.pc
+%{_aclocaldir}/gtkglext-1.0.m4
 %{_gtkdocdir}/gtkglext
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libg[dt]kglext-x11-*.a
+%{_libdir}/libgdkglext-x11-1.0.a
+%{_libdir}/libgtkglext-x11-1.0.a
