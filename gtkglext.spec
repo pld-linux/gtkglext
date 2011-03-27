@@ -2,7 +2,7 @@ Summary:	OpenGL extension to GTK
 Summary(pl.UTF-8):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.2.0
-Release:	5
+Release:	6
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
@@ -89,6 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -107,8 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgdkglext-x11-1.0.so
 %attr(755,root,root) %{_libdir}/libgtkglext-x11-1.0.so
-%{_libdir}/libgdkglext-x11-1.0.la
-%{_libdir}/libgtkglext-x11-1.0.la
 %{_libdir}/%{name}-1.0
 %{_includedir}/%{name}-1.0
 %{_pkgconfigdir}/gdkglext-1.0.pc
