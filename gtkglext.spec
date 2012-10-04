@@ -16,7 +16,9 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gtk+2-devel >= 2:2.19.0
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	pangox-compat-devel
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXmu-devel
 Requires:	gtk+2 >= 2:2.19.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,6 +47,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
 Requires:	gtk+2-devel >= 2:2.19.0
+Requires:	pangox-compat-devel
 Requires:	xorg-lib-libXmu-devel
 
 %description devel
@@ -68,6 +71,9 @@ Statyczne biblioteki GtkGLExt.
 %prep
 %setup -q
 %patch0 -p1
+
+# pangox-compat specifies 0.0.1, not 1.x, allow it to satisfy pc check
+%{__sed} -i -e '/m4_define(\[pangox_required_version\]/s,1\.0\.0,0.0.1,' configure.in
 
 %build
 %{__libtoolize}
