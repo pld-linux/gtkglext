@@ -2,7 +2,7 @@ Summary:	OpenGL extension to GTK
 Summary(pl.UTF-8):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.2.0
-Release:	6
+Release:	7
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
@@ -16,9 +16,8 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gtk+2-devel >= 2:2.19.0
 BuildRequires:	gtk-doc >= 0.10
 BuildRequires:	libtool >= 1:1.4.2-9
-BuildRequires:	pangox-compat-devel
+BuildRequires:	pangox-compat-devel >= 0.0.2
 BuildRequires:	pkgconfig
-BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libXmu-devel
 Requires:	gtk+2 >= 2:2.19.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,7 +46,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
 Requires:	gtk+2-devel >= 2:2.19.0
-Requires:	pangox-compat-devel
+Requires:	pangox-compat-devel >= 0.0.2
 Requires:	xorg-lib-libXmu-devel
 
 %description devel
@@ -71,9 +70,6 @@ Statyczne biblioteki GtkGLExt.
 %prep
 %setup -q
 %patch0 -p1
-
-# pangox-compat specifies 0.0.1, not 1.x, allow it to satisfy pc check
-%{__sed} -i -e '/m4_define(\[pangox_required_version\]/s,1\.0\.0,0.0.1,' configure.in
 
 %build
 %{__libtoolize}
