@@ -2,13 +2,15 @@ Summary:	OpenGL extension to GTK
 Summary(pl.UTF-8):	Rozszerzenie OpenGL dla GTK
 Name:		gtkglext
 Version:	1.2.0
-Release:	8
+Release:	9
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://downloads.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
+Source0:	https://downloads.sourceforge.net/gtkglext/%{name}-%{version}.tar.bz2
 # Source0-md5:	ed7ba24ce06a8630c07f2d0ee5f04ab4
 Patch0:		%{name}-gtk+2.patch
-URL:		http://gtkglext.sourceforge.net/
+Patch1:		%{name}-index.patch
+Patch2:		%{name}-gtkdoc.patch
+URL:		https://gtkglext.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -19,10 +21,8 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pangox-compat-devel >= 0.0.2
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libXmu-devel
-Requires:	gtk+2 >= 2:2.19.0
+Requires:	gtk+2%{?_isa} >= 2:2.19.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define 	_noautoreqdep	libGL.so.1 libGLU.so.1
 
 %description
 GtkGLExt provides the GDK objects to support OpenGL rendering in GTK,
@@ -43,11 +43,11 @@ OpenGL, ale interfejs do używania OpenGL w *KAŻDYM* widgecie GTK+.
 Summary:	Development files for GtkGLExt
 Summary(pl.UTF-8):	Pliki programistyczne GtkGLExt
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	OpenGL-GLU-devel
-Requires:	gtk+2-devel >= 2:2.19.0
-Requires:	pangox-compat-devel >= 0.0.2
-Requires:	xorg-lib-libXmu-devel
+Requires:	gtk+2-devel%{?_isa} >= 2:2.19.0
+Requires:	pangox-compat-devel%{?_isa} >= 0.0.2
+Requires:	xorg-lib-libXmu-devel%{?_isa}
 
 %description devel
 Development files for GtkGLExt.
@@ -70,10 +70,12 @@ Statyczne biblioteki GtkGLExt.
 %prep
 %setup -q
 %patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4macros
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -102,15 +104,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog* README TODO
-%attr(755,root,root) %{_libdir}/libgdkglext-x11-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgdkglext-x11-1.0.so.0
-%attr(755,root,root) %{_libdir}/libgtkglext-x11-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgtkglext-x11-1.0.so.0
+%{_libdir}/libgdkglext-x11-1.0.so.*.*.*
+%ghost %{_libdir}/libgdkglext-x11-1.0.so.0
+%{_libdir}/libgtkglext-x11-1.0.so.*.*.*
+%ghost %{_libdir}/libgtkglext-x11-1.0.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgdkglext-x11-1.0.so
-%attr(755,root,root) %{_libdir}/libgtkglext-x11-1.0.so
+%{_libdir}/libgdkglext-x11-1.0.so
+%{_libdir}/libgtkglext-x11-1.0.so
 %{_libdir}/%{name}-1.0
 %{_includedir}/%{name}-1.0
 %{_pkgconfigdir}/gdkglext-1.0.pc

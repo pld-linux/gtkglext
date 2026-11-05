@@ -1,0 +1,21 @@
+Avoid conflict with libc function
+--- gtkglext-1.2.0/gdk/gdkglshapes.c.orig	2004-02-20 10:38:12.000000000 +0100
++++ gtkglext-1.2.0/gdk/gdkglshapes.c	2026-11-05 06:24:13.293168685 +0100
+@@ -544,7 +544,7 @@ static GLfloat idata[12][3] =
+   {-Z, -X, 0}
+ };
+ 
+-static int index[20][3] =
++static int index_[20][3] =
+ {
+   {0, 4, 1},
+   {0, 9, 4},
+@@ -574,7 +574,7 @@ icosahedron(GLenum shadeType)
+   int i;
+ 
+   for (i = 19; i >= 0; i--) {
+-    drawtriangle(i, idata, index, shadeType);
++    drawtriangle(i, idata, index_, shadeType);
+   }
+ }
+ 

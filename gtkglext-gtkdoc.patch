@@ -1,0 +1,59 @@
+--- gtkglext-1.2.0/docs/reference/gtkglext/Makefile.am.orig	2003-07-29 08:12:20.000000000 +0200
++++ gtkglext-1.2.0/docs/reference/gtkglext/Makefile.am	2026-11-05 18:46:47.275976016 +0100
+@@ -133,19 +133,9 @@ scan-build.stamp: $(HFILE_GLOB)
+ $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES): scan-build.stamp
+ 	@true
+ 
+-#### templates ####
+-
+-tmpl-build.stamp: $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_OVERRIDES)
+-	@echo '*** Rebuilding template files ***'
+-	cd $(srcdir) && gtkdoc-mktmpl --module=$(DOC_MODULE)
+-	touch tmpl-build.stamp
+-
+-tmpl.stamp: tmpl-build.stamp
+-	@true
+-
+ #### sgml ####
+ 
+-sgml-build.stamp: tmpl.stamp $(CFILE_GLOB) $(srcdir)/tmpl/*.sgml
++sgml-build.stamp: $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_OVERRIDES) $(CFILE_GLOB) $(srcdir)/tmpl/*.sgml
+ 	@echo '*** Building SGML ***'
+ 	cd $(srcdir) && \
+ 	gtkdoc-mkdb --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --main-sgml-file=$(DOC_MAIN_SGML_FILE) $(MKDB_OPTIONS)
+@@ -162,7 +152,7 @@ html-build.stamp: sgml.stamp $(DOC_MAIN_
+ 	cd $(srcdir)/html && gtkdoc-mkhtml $(DOC_MODULE) ../$(DOC_MAIN_SGML_FILE)
+ 	test "x$(HTML_IMAGES)" = "x" || ( cd $(srcdir) && cp $(HTML_IMAGES) html )
+ 	@echo '-- Fixing Crossreferences' 
+-	cd $(srcdir) && gtkdoc-fixxref --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
++	cd $(srcdir) && gtkdoc-fixxref --module=$(DOC_MODULE) --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
+ 	touch html-build.stamp
+ endif
+ 
+--- gtkglext-1.2.0/examples/lw.c.orig	2002-06-10 03:21:15.000000000 +0200
++++ gtkglext-1.2.0/examples/lw.c	2026-11-05 19:29:05.604032398 +0100
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 1998 Janne Löf <jlof@mail.student.oulu.fi>
++ * Copyright (C) 1998 Janne LÃ¶f <jlof@mail.student.oulu.fi>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
+--- gtkglext-1.2.0/examples/lw.h.orig	2003-03-29 21:25:01.000000000 +0100
++++ gtkglext-1.2.0/examples/lw.h	2026-11-05 19:29:30.264195308 +0100
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 1998 Janne Löf <jlof@mail.student.oulu.fi>
++ * Copyright (C) 1998 Janne LÃ¶f <jlof@mail.student.oulu.fi>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
+--- gtkglext-1.2.0/examples/viewlw.c.orig	2004-02-20 18:41:02.000000000 +0100
++++ gtkglext-1.2.0/examples/viewlw.c	2026-11-05 19:29:53.856211957 +0100
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 1998 Janne Löf <jlof@mail.student.oulu.fi>
++ * Copyright (C) 1998 Janne LÃ¶f <jlof@mail.student.oulu.fi>
+  *
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Library General Public
